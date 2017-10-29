@@ -11,7 +11,7 @@ import java.util.Calendar;
  * Created by acacko on 29.10.17
  */
 
-@Component
+
 public class Application {
 
     @Autowired
