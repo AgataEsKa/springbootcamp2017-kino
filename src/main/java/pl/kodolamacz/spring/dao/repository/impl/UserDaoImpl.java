@@ -13,8 +13,6 @@ import java.util.Map;
 @Repository
 public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
 
-
-
     @Override
     public User findUser(String email) {
         return entityMap.values()

@@ -1,22 +1,21 @@
 package pl.kodolamacz.spring.dao.repository.impl;
 
 import org.springframework.stereotype.Repository;
-import pl.kodolamacz.spring.dao.model.Movie;
-import pl.kodolamacz.spring.dao.repository.MovieDao;
+import pl.kodolamacz.spring.dao.model.Room;
+import pl.kodolamacz.spring.dao.repository.RoomDao;
 
 /**
  * Created by acacko on 29.10.17
  */
 @Repository
-public class MovieDaoImpl extends AbstractDaoImpl<Movie> implements MovieDao {
+public class RoomDaoImpl extends AbstractDaoImpl<Room> implements RoomDao {
 
     @Override
-    public Movie findByTitle(String title) {
+    public Room findByRoomNumber(int number) {
         return entityMap.values()
                 .stream()
-                .filter(movie -> movie.getTitle().equals(title))
+                .filter(room -> room.getNumber() == number)
                 .findFirst()
                 .orElse(null);
     }
-
 }
