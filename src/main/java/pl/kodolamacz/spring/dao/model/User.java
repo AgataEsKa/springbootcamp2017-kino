@@ -8,8 +8,7 @@ public class User extends Entity {
     private String email;
     private String password;
 
-    public User(Long id, String email, String password) {
-        super(id);
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
     }

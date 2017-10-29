@@ -12,8 +12,7 @@ public class Show extends Entity {
     private Movie movie;
     private Room room;
 
-    public Show(Long id, Date date, Movie movie, Room room) {
-        super(id);
+    public Show(Date date, Movie movie, Room room) {
         this.date = date;
         this.movie = movie;
         this.room = room;

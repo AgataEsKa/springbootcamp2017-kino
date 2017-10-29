@@ -8,14 +8,9 @@ public class Movie extends Entity {
     private String title;
     private int price; // in grosze
 
-    public Movie(Long id, String title, int price) {
-        super(id);
+    public Movie(String title, int price) {
         this.title = title;
         this.price = price;
-    }
-
-    public Movie(Long id) {
-        super(id);
     }
 
     public String getTitle() {

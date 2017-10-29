@@ -16,13 +16,14 @@ public abstract class AbstractDaoImpl<T extends Entity> implements AbstractDao<T
     Map<Long, T> entityMap = new HashMap<>();
 
     @Autowired
-    Generator generator;
+    private Generator generator;
 
     public T findById(Long id) {
         return entityMap.get(id);
     }
 
-    public void addEntity(T entity) {
-        entityMap.put(generator.getUniqueId(), entity);
+    public void save(T entity) {
+        entity.setId(generator.getUniqueId());
+        entityMap.put(entity.getId(), entity);
     }
 }

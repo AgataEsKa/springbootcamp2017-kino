@@ -23,7 +23,7 @@ public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
     }
 
     @Override
-    public void addEntity(User entity) {
+    public void save(User entity) {
 
     }
 }

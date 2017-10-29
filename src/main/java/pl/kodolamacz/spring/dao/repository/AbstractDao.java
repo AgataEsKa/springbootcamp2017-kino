@@ -9,6 +9,6 @@ public interface AbstractDao<T extends Entity> {
 
     T findById(Long id);
 
-    void addEntity(T entity);
+    void save(T entity);
 
 }

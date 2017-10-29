@@ -10,8 +10,7 @@ public class Room extends Entity {
     private int number;
     private int capacity;
 
-    public Room(Long id, int number, int capacity) {
-        super(id);
+    public Room(int number, int capacity) {
         this.number = number;
         this.capacity = capacity;
     }

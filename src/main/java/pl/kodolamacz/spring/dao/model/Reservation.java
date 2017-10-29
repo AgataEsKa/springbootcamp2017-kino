@@ -12,8 +12,7 @@ public class Reservation extends Entity {
     private User user;
     private Show show;
 
-    public Reservation(Long id, User user, Show show) {
-        super(id);
+    public Reservation(User user, Show show) {
         this.user = user;
         this.show = show;
     }
@@ -40,5 +39,14 @@ public class Reservation extends Entity {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "status=" + status +
+                ", user=" + user +
+                ", show=" + show +
+                '}';
     }
 }
