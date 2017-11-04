@@ -5,7 +5,7 @@ import pl.kodolamacz.spring.dao.model.helpers.Status;
 /**
  * Created by acacko on 29.10.17
  */
-public class Reservation extends Entity {
+public class Reservation extends AbstractEntity {
 
     private Status status = Status.WAITING;
 

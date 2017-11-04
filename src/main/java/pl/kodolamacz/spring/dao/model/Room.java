@@ -1,11 +1,9 @@
 package pl.kodolamacz.spring.dao.model;
 
-import java.util.List;
-
 /**
  * Created by acacko on 29.10.17
  */
-public class Room extends Entity {
+public class Room extends AbstractEntity {
 
     private int number;
     private int capacity;

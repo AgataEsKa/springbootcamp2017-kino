@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by acacko on 29.10.17
  */
-public class Show extends Entity {
+public class Show extends AbstractEntity {
 
     private Date date;
 

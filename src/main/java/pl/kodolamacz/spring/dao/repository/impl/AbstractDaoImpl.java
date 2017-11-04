@@ -1,21 +1,36 @@
 package pl.kodolamacz.spring.dao.repository.impl;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
-import pl.kodolamacz.spring.dao.model.Entity;
+import pl.kodolamacz.spring.dao.model.AbstractEntity;
 import pl.kodolamacz.spring.dao.repository.AbstractDao;
 import pl.kodolamacz.spring.dao.tools.Generator;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
  * Created by acacko on 29.10.17
  */
-public abstract class AbstractDaoImpl<T extends Entity> implements AbstractDao<T> {
+public abstract class AbstractDaoImpl<T extends AbstractEntity> implements AbstractDao<T> {
+
+//    @Autowired
+//    protected NamedParameterJdbcTemplate jdbcTemplate;
 
     @Autowired
-    protected NamedParameterJdbcTemplate jdbcTemplate;
+    protected SessionFactory sessionFactory;
+
+    protected Class<T> clazz;
+
+    public void setClazz(Class<T> clazz) {
+        this.clazz = clazz;
+    }
+
+    public Class<T> getClazz() {
+        return clazz;
+    }
 
     Map<Long, T> entityMap = new HashMap<>();
 
@@ -29,5 +44,14 @@ public abstract class AbstractDaoImpl<T extends Entity> implements AbstractDao<T
     public void save(T entity) {
         entity.setId(generator.getUniqueId());
         entityMap.put(entity.getId(), entity);
+    }
+
+    public Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
+    public List<T> findAll() {
+        // zapytanie o wiele
+        return getCurrentSession().createQuery("from " + clazz, clazz).getResultList();
     }
 }

@@ -1,12 +1,21 @@
 package pl.kodolamacz.spring.dao.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
 /**
  * Created by acacko on 29.10.17
  */
-public class User extends Entity {
+@Entity
+@Table(name = "users")
+public class User extends AbstractEntity {
 
     private String email;
     private String password;
+
+    // for hibernate:
+    public User() {
+    }
 
     public User(String email, String password) {
         this.email = email;
