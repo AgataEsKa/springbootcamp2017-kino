@@ -2,6 +2,7 @@ package pl.kodolamacz.spring.services;
 
 import pl.kodolamacz.spring.dao.model.Show;
 import pl.kodolamacz.spring.dao.model.User;
+import pl.kodolamacz.spring.services.exceptions.UserNotFoundException;
 
 import java.util.Date;
 
@@ -19,7 +20,7 @@ public interface CinemaSerice {
     void createUser(String email, String password);
 
     // 1. Metoda na sprawdzenie czy user to user
-    boolean checkUser(String email, String password);
+    boolean checkUser(String email, String password) throws UserNotFoundException;
 
     // 2. Utworzenie emisji filmu
     void createShow(Date date, String movieTitle, int roomNumber);
