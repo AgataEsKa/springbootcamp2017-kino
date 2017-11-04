@@ -20,7 +20,7 @@ import java.util.Properties;
  * Created by acacko on 04.11.17
  */
 @Configuration
-@EnableTransactionManagement
+@EnableTransactionManagement // odpowiednik <tx:annotation-driven /> w XML
 @PropertySource({"classpath:db/hibernate.properties"})
 public class PersistanceConfig {
 
