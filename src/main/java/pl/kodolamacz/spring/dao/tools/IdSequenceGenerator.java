@@ -15,11 +15,19 @@ import static org.springframework.beans.factory.config.ConfigurableBeanFactory.S
 @Scope(SCOPE_PROTOTYPE)
 public class IdSequenceGenerator implements Generator {
 
+    private int version = 4;
+
     private AtomicLong count = new AtomicLong(0);
 
     @Override
     public Long getUniqueId() {
         return count.getAndIncrement();
     }
+
+    @Override
+    public int getVersion() {
+        return version;
+    }
+
 
 }

@@ -1,11 +1,14 @@
 package pl.kodolamacz.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import pl.kodolamacz.spring.dao.model.*;
 import pl.kodolamacz.spring.dao.repository.*;
+import pl.kodolamacz.spring.dao.tools.Generator;
 
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by acacko on 29.10.17
@@ -13,6 +16,21 @@ import java.util.Calendar;
 
 @Component
 public class Application {
+
+    @Value("${app.name:defaultValue}") // #{} - SpEL, ${} - propertisy
+    private String appName;
+
+    @Value("${app.version}")
+    private int version;
+
+    // wywołanie metody/konstruktora na dowolnym obiekcie
+    @Value("#{new java.util.Date()}")
+    private Date date;
+
+
+    // wywołanie metody na bean'ie
+    @Value("#{idSequenceGenerator.version}")
+    private int generatorVersion;
 
     @Autowired
     private UserDao userDao;
