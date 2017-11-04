@@ -13,6 +13,12 @@ public class User extends Entity {
         this.password = password;
     }
 
+    public User(Long id, String email, String password) {
+        super(id);
+        this.email = email;
+        this.password = password;
+    }
+
     public String getEmail() {
         return email;
     }

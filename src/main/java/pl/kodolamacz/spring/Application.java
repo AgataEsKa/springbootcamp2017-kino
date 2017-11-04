@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import pl.kodolamacz.spring.dao.model.*;
 import pl.kodolamacz.spring.dao.repository.*;
-import pl.kodolamacz.spring.dao.tools.Generator;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -48,6 +47,9 @@ public class Application {
     private ReservationDao reservationDao;
 
     public void simulate() {
+
+        User user = userDao.findUser("arek@cacko.pl");
+        System.out.println("Odczytano z bazy: " + user);
 
         User arek = new User("cacko@arek.pl", "pass");
         userDao.save(arek);

@@ -15,7 +15,7 @@ import java.util.Map;
 public abstract class AbstractDaoImpl<T extends Entity> implements AbstractDao<T> {
 
     @Autowired
-    private DataSource dataSource;
+    protected DataSource dataSource;
 
     Map<Long, T> entityMap = new HashMap<>();
 
