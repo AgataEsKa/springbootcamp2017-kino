@@ -51,6 +51,8 @@ public class Application {
         User user = userDao.findUser("arek@cacko.pl");
         System.out.println("Odczytano z bazy: " + user);
 
+        System.out.println("Odczytano z bazy wszystkie: " + userDao.findAll());
+
         User arek = new User("cacko@arek.pl", "pass");
         userDao.save(arek);
 

@@ -1,13 +1,12 @@
 package pl.kodolamacz.spring.dao.repository.impl;
 
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.stereotype.Repository;
 import pl.kodolamacz.spring.dao.model.User;
 import pl.kodolamacz.spring.dao.repository.UserDao;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.List;
 
 /**
  * Created by acacko on 29.10.17
@@ -15,35 +14,24 @@ import java.sql.Statement;
 @Repository
 public class UserDaoImpl extends AbstractDaoImpl<User> implements UserDao {
 
+    private static final String FIND_BY_EMAIL = "select * from users where email = :email"; // :email - łyka NamedParameterJdbcTemplate
+    private static final String FIND_ALL = "select * from users";
+
+    private static final RowMapper<User> ROW_MAPPER = (rs, rowNum) -> new User(
+                rs.getLong("id"),
+                rs.getString("email"),
+                rs.getString("password"));
+
     @Override
     public User findUser(String email) {
+    // zapytanie o jeden
+        return jdbcTemplate.queryForObject(FIND_BY_EMAIL, new MapSqlParameterSource("email", email), ROW_MAPPER);
+    }
 
-        User ret = null;
-
-        try(Connection conn = dataSource.getConnection();
-            Statement stmt = conn.createStatement()){
-
-            String sql;
-            sql = "SELECT * FROM Users WHERE email = '" + email + "'";
-            ResultSet rs = stmt.executeQuery(sql);
-
-            if(rs.next()){
-                ret = new User(
-                        rs.getLong("id"),
-                        rs.getString("email"),
-                        rs.getString("password")
-                );
-            }
-            rs.close();
-        }catch(SQLException se){
-            //Handle errors for JDBC
-            se.printStackTrace();
-        }catch(Exception e){
-            //Handle errors for Class.forName
-            e.printStackTrace();
-        }
-
-        return ret;
+    @Override
+    public List<User> findAll() {
+    // zapytanie o wiele
+        return jdbcTemplate.query(FIND_ALL, ROW_MAPPER);
     }
 
 }
