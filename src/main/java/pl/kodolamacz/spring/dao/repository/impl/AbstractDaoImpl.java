@@ -5,6 +5,7 @@ import pl.kodolamacz.spring.dao.model.Entity;
 import pl.kodolamacz.spring.dao.repository.AbstractDao;
 import pl.kodolamacz.spring.dao.tools.Generator;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -12,6 +13,9 @@ import java.util.Map;
  * Created by acacko on 29.10.17
  */
 public abstract class AbstractDaoImpl<T extends Entity> implements AbstractDao<T> {
+
+    @Autowired
+    private DataSource dataSource;
 
     Map<Long, T> entityMap = new HashMap<>();
 
