@@ -57,6 +57,39 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
         assertThat(userDao.findByEmail("xxxx")).isNull();
     }
 
+    @Test
+    public void saveTest() {
+        long countBefore = userDao.count();
+        User user = new User("email@pl2", "pass2");
+        userDao.save(user);
+        assertThat(user).isNotNull();
+        assertThat(user.getId()).isNotNull();
+
+        long countAfter = userDao.count();
+
+        assertThat(countBefore).isLessThan(countAfter);
+        assertThat(countBefore).isEqualTo(countAfter - 1);
+
+    }
+
+    @Test
+    public void deleteTest() {
+
+        long countBefore = userDao.count();
+
+        User one = userDao.findOne(user.getId());
+        userDao.delete(one);
+
+        // tożsame z :
+        //userDao.delete(one.getId());
+
+        long countAfter = userDao.count();
+        assertThat(countBefore).isGreaterThan(countAfter);
+
+        assertThat(userDao.findOne(user.getId())).isNull();
+
+    }
+
 
 
 
