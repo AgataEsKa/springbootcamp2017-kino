@@ -3,6 +3,7 @@ package pl.kodolamacz.spring;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 import pl.kodolamacz.spring.dao.model.*;
 import pl.kodolamacz.spring.dao.repository.*;
 
@@ -14,6 +15,7 @@ import java.util.Date;
  */
 
 @Component
+@Transactional
 public class Application {
 
     @Value("${app.name:defaultValue}") // #{} - SpEL, ${} - propertisy
@@ -54,7 +56,7 @@ public class Application {
         System.out.println("Odczytano z bazy wszystkie: " + userDao.findAll());
 
         User arek = new User("cacko@arek.pl", "pass");
-//        userDao.save(arek);
+        userDao.save(arek);
 
         Movie titanic = new Movie("Titanic2", 2000);
 //        movieDao.save(titanic);
