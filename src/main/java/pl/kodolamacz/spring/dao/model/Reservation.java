@@ -2,15 +2,27 @@ package pl.kodolamacz.spring.dao.model;
 
 import pl.kodolamacz.spring.dao.model.helpers.Status;
 
+import javax.persistence.*;
+
 /**
  * Created by acacko on 29.10.17
  */
+@Entity
+@Table(name = "reservations")
 public class Reservation extends AbstractEntity {
 
+    @Enumerated(EnumType.STRING)
     private Status status = Status.WAITING;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "show_id")
     private Show show;
+
+    public Reservation() {}
 
     public Reservation(User user, Show show) {
         this.user = user;

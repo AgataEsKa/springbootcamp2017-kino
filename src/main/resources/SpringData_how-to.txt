@@ -1,0 +1,18 @@
+0. Zakładamy, że posiadamy skonfigurowanego Hibernate
+
+Spring Data - jest nakładką na ORM (Hibernate JPA)
+
+1. Dostarczamy zależność Spring Data JPA do naszego projektu:
+<dependency>
+    <groupId>org.springframework.data</groupId>
+    <artifactId>spring-data-jpa</artifactId>
+    <version>1.11.8.RELEASE</version>
+</dependency>
+
+2. Wyrzucamy wszystkie implementacje Dao
+
+3. Wszystkie interfejsy Dao dziedziczą po JpaRepository<T, klucz>
+
+4. Oznaczamy każdy interfejs Dao jako @Repository
+
+I koniec :)

@@ -41,12 +41,12 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Test
     public void findUserByEmail() {
-        assertThat(userDao.findUser("arek@cacko.pl"), is(not(nullValue())));
+        assertThat(userDao.findByEmail("arek@cacko.pl"), is(not(nullValue())));
     }
 
     @Test
     public void findUserByNotExistingEmail() {
-        assertThat(userDao.findUser("xxxx"), is(nullValue()));
+        assertThat(userDao.findByEmail("xxxx"), is(nullValue()));
     }
 
 

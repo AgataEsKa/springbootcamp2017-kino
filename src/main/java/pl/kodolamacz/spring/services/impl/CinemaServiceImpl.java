@@ -39,7 +39,7 @@ public class CinemaServiceImpl implements CinemaSerice {
 
     @Override
     public boolean checkUser(String email, String password) throws UserNotFoundException {
-        User user = userDao.findUser(email);
+        User user = userDao.findByEmail(email);
         if(user == null)
             throw new UserNotFoundException("user not found with email: "+ email);
 
@@ -50,7 +50,7 @@ public class CinemaServiceImpl implements CinemaSerice {
     @Override
     public void createShow(Date date, String movieTitle, int roomNumber) {
         Movie movie = movieDao.findByTitle(movieTitle);
-        Room room = roomDao.findByRoomNumber(roomNumber);
+        Room room = roomDao.findByCapacity(roomNumber);
         showDao.save(new Show(date, movie, room));
     }
 

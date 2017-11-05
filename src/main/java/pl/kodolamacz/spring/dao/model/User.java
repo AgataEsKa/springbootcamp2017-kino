@@ -1,9 +1,7 @@
 package pl.kodolamacz.spring.dao.model;
 
-import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 /**
  * Created by acacko on 29.10.17
@@ -19,6 +17,9 @@ public class User extends AbstractEntity {
 
     private String email;
     private String password;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Reservation> reservations;
 
     // for hibernate:
     public User() {

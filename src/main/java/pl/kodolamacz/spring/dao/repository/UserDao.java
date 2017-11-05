@@ -1,16 +1,16 @@
 package pl.kodolamacz.spring.dao.repository;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 import pl.kodolamacz.spring.dao.model.User;
-
-import java.util.List;
 
 /**
  * Created by acacko on 29.10.17
  */
-public interface UserDao extends AbstractDao<User> {
+@Repository
+public interface UserDao extends JpaRepository<User, Long> {
 
-    User findUser(String email);
+    User findByEmail(String email);
 
-    List<User> findAll();
 
 }
