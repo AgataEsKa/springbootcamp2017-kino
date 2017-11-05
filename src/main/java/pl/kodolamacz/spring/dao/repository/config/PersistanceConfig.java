@@ -1,18 +1,20 @@
 package pl.kodolamacz.spring.dao.repository.config;
 
-import org.hibernate.SessionFactory;
+import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.PropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
-import org.springframework.orm.hibernate5.HibernateTransactionManager;
-import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -21,37 +23,29 @@ import java.util.Properties;
  */
 @Configuration
 @EnableTransactionManagement // odpowiednik <tx:annotation-driven /> w XML
-@PropertySource({"classpath:db/hibernate.properties"})
 public class PersistanceConfig {
 
-    @Autowired
-    private Environment env;
-
-//    @Bean
-//    public NamedParameterJdbcTemplate getJdbcTemplate() {
-//        return new NamedParameterJdbcTemplate(getHSQLDataSource());
-//    }
-
     @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        // LocalSessionFactoryBean implementuje FactoryBean<SessionFactory>
-        // czyli wie jak wyprodukować SessionFactory
-
-        LocalSessionFactoryBean localSessionFactoryBean =
-                new LocalSessionFactoryBean();
-        localSessionFactoryBean.setDataSource(getHSQLDataSource());
-        localSessionFactoryBean.setPackagesToScan("pl.kodolamacz.spring.dao");
-        localSessionFactoryBean.setHibernateProperties(getHibernateProperties());
-
-        return localSessionFactoryBean;
+    public PropertiesFactoryBean jpaProperties() {
+        PropertiesFactoryBean factoryBean =  new PropertiesFactoryBean();
+        factoryBean.setLocation(new ClassPathResource("db/jpa.properties"));
+        return factoryBean;
     }
 
     @Bean
     @Autowired
-    public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) { // bierze z LocalSessionFactoryBean
-        HibernateTransactionManager txManager = new HibernateTransactionManager();
-        txManager.setSessionFactory(sessionFactory);
-        return txManager;
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties jpaProperties) {
+        LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
+        entityManagerFactoryBean.setPackagesToScan("pl.kodolamacz.spring.dao");
+        entityManagerFactoryBean.setDataSource(dataSource);
+        entityManagerFactoryBean.setJpaProperties(jpaProperties);
+        entityManagerFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
+        return entityManagerFactoryBean;
+    }
+
+    @Bean
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
+        return new JpaTransactionManager(entityManagerFactory);
     }
 
     @Bean
@@ -59,23 +53,7 @@ public class PersistanceConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-    private Properties getHibernateProperties() {
-        return new Properties() {
-            {
-                setProperty("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
-                setProperty("hibernate.dialect", env.getProperty("hibernate.dialect"));
-//                setProperty("hibernate.globally_quoted_identifiers", "true");   <--- not working with it
-                setProperty("hibernate.default_schema", "PUBLIC");
-                setProperty("show_sql", "true");
-//                setProperty("hibernate.jdbc.use_streams_for_binary", "true");
-//                setProperty("hibernate.jdbc.batch_size", "1000");
-            }
-        };
-    }
-
-
-
-        @Bean
+    @Bean
     public DataSource getHSQLDataSource() {
         EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
         return builder

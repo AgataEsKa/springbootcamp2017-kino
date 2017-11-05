@@ -1,6 +1,8 @@
 package pl.kodolamacz.spring.dao.model;
 
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -8,6 +10,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users")
+@NamedQueries({
+    @NamedQuery(name = "User.byMail",
+            query = "select a from User a where a.email = :email"
+    )
+})
 public class User extends AbstractEntity {
 
     private String email;
