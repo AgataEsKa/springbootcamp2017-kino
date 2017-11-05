@@ -14,7 +14,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "pl.kodolamacz.mvc")
+@ComponentScan(basePackages = "pl.kodolamacz.mvc.controllers")
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
