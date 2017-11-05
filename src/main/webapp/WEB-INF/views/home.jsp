@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: acacko
@@ -12,5 +13,7 @@
 </head>
 <body>
 HELLO WORLD!
+<br />
+<a href="<c:url value = "/accounts"/>">Lista użytkowników</a> | Lista rezerwacji | Lista pokoi | Lista filmów
 </body>
 </html>
