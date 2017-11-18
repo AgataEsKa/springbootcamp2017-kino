@@ -39,6 +39,10 @@ public class UserController {
 
   @RequestMapping(value = "/save", method = POST)
   public String saveNewUser(AddUserForm userForm) {
+
+//    if(bindingResult.hasErrors()){
+//      return "addNewUser";
+//    }
     userDao.save(new User(userForm.getEmail(), userForm.getPassword()));
     return "redirect:/" + BASE_URL;
   }
