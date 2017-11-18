@@ -24,20 +24,20 @@
 
             <c:url value="/accounts/save" var="postUrl"/>
             <form:form modelAttribute="userForm" action="${postUrl}" method="post">
-                <form:errors path="*" element="div" />
+                <%--<form:errors path="*" element="div" />--%>
                 <table class="table table-responsive table-bordered">
                     <tr>
                         <td>Email</td>
                         <td>
-                            <form:input path="email"/>
-                            <%--<form:errors path="email" />--%>
+                            <form:input path="email"  />
+                            <form:errors path="email" />
                         </td>
                     </tr>
                     <tr>
                         <td>Password</td>
                         <td>
                             <form:input path="password"/>
-                            <%--<form:errors path="password" />--%>
+                            <form:errors path="password" />
                         </td>
                     </tr>
                     <tr>
