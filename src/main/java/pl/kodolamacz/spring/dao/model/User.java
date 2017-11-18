@@ -52,6 +52,10 @@ public class User extends AbstractEntity {
         this.password = password;
     }
 
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
     @Override
     public String toString() {
         return "User{" +

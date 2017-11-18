@@ -18,9 +18,9 @@ public class UserController {
     @Autowired
     private UserDao userDao;
 
-    @RequestMapping(name = "/", method = GET)
+    @RequestMapping(method = GET)
     public String get(Model model) {
-        model.addAttribute("users", userDao.findAll());
+        model.addAttribute("users", userDao.findUsersFetchResevation());
         return "accounts";
     }
 }

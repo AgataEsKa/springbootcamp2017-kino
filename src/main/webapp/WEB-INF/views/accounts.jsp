@@ -21,9 +21,10 @@
     </tr>
     <c:forEach items="${users}" var="user">
         <tr>
-            <td>${user.id}</td>
+            <td>${user.getId()}</td>
             <td>${user.email}</td>
             <td>${user.password}</td>
+            <td>${user.reservations.size()}</td>
         </tr>
     </c:forEach>
 
