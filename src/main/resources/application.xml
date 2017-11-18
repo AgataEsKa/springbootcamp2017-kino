@@ -12,6 +12,8 @@
 
     <context:component-scan base-package="pl.kodolamacz.spring" />
 
+
+
     <!--uruchomienie aspektów:-->
     <aop:aspectj-autoproxy/>
 
