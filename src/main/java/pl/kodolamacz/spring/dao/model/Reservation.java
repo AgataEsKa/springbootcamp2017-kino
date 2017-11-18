@@ -1,5 +1,6 @@
 package pl.kodolamacz.spring.dao.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import pl.kodolamacz.spring.dao.model.helpers.Status;
 
 import javax.persistence.*;
@@ -14,10 +15,12 @@ public class Reservation extends AbstractEntity {
     @Enumerated(EnumType.STRING)
     private Status status = Status.WAITING;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @JsonIgnore
     @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "show_id")
     private Show show;

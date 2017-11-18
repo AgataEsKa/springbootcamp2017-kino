@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import pl.kodolamacz.mvc.controllers.forms.AddUserForm;
 import pl.kodolamacz.spring.dao.model.User;
 import pl.kodolamacz.spring.dao.repository.UserDao;
+
+import java.util.List;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -45,6 +48,12 @@ public class UserController {
 //    }
     userDao.save(new User(userForm.getEmail(), userForm.getPassword()));
     return "redirect:/" + BASE_URL;
+  }
+
+//  accounts/ajax
+  @RequestMapping(value = "/ajax", method = GET)
+  public @ResponseBody List<User> getUsers() {
+      return userDao.findAll();
   }
 
 }
