@@ -12,6 +12,13 @@
 <html>
 <head>
     <title>Title</title>
+    <link rel="icon" href="<c:url value="/resources/favicon.png"/>" type="image/x-icon"/>
+
+    <link rel="stylesheet"
+          type="text/css"
+          href="<c:url value="/resources/style.css" />">
+    <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>"/>
+    <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
 </head>
 <body>
 <%--pobieramy komunikat w odpowiednim języku--%>
