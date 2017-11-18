@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
 <%--
   Created by IntelliJ IDEA.
   User: acacko
@@ -12,7 +14,8 @@
     <title>Title</title>
 </head>
 <body>
-HELLO WORLD!
+<%--pobieramy komunikat w odpowiednim języku--%>
+<spring:message code="welcome" />
 <br />
 <a href="<c:url value = "/accounts"/>">Lista użytkowników</a> | Lista rezerwacji | Lista pokoi | Lista filmów
 </body>
