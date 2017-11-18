@@ -35,7 +35,7 @@ public class ReservationController {
     // Można pominąć deklarację nazwy zmiennej w @RequestParam
     model.addAttribute("userReservations", reservationDao.findByUserId(userId));
     model.addAttribute("user", userDao.findOne(userId));
-    return "reservations";
+    return "reservations/reservations";
   }
 
   // przykład adresu: http://localhost:8080/kino/reservations/byUser2/2
@@ -46,6 +46,6 @@ public class ReservationController {
     // wiecej parametrów np.: http://localhost:8080/kino/reservations/byUser2/2/Arek/1988
     model.addAttribute("userReservations", reservationDao.findByUserId(userId));
     model.addAttribute("user", userDao.findOne(userId));
-    return "reservations";
+    return "reservations/reservations";
   }
 }
