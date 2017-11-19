@@ -15,9 +15,9 @@ Praca domowa:
 
 Znacie już praktycznie cały proces wytwarzania aplikacji począwszy od projektowania baz danych, ich obsługi za pomocą narzędzi ORM. Potraficie wykonać całą logikę biznesową z użyciem **Spring Framework**. Potraficie również projektować warstwę prezentacji danych z użyciem JSP, Tiles. Umiecie generować widoki, przesyłać dane do modelu oraz pozyskiwać z niego dane poprzez GET, POST, ..., formularze, walidację. Na koniec dowiedzieliście się jak zabezpieczać naszą aplikację poprzez proces uwierzytelnienia użytkowników w systemie. Wykorzystajcie więc tą wiedzę na rozwinięcie naszej aplikacji.
 
-Od zakończenie zająć dorobiłem przyciski **Zaloguj** oraz **Zarejestruj**. Funkcjonalności te już mieliśmy - jedynie dopuściłem do opcji zakładania konta użytkowników niezalogowanych. Więcej tutaj -> ff9da568690ce68ccbf227246029263c057b4069
+Od zakończenie zająć dorobiłem przyciski **Zaloguj** oraz **Zarejestruj**. Funkcjonalności te już mieliśmy - jedynie dopuściłem do opcji zakładania konta użytkowników niezalogowanych. Więcej tutaj -> [Commit](https://github.com/cackoarek/springbootcamp2017-kino/commit/f2190f202caaa38518c951ba9010aa8eafc15fcb)
 
-Oczywiście znów łyknęliście jak pelikany sposób logowania... który znów był zły :) Więcej tu: f2190f202caaa38518c951ba9010aa8eafc15fcb
+Oczywiście znów łyknęliście jak pelikany sposób logowania... który znów był zły :) Więcej tu: [Commit](https://github.com/cackoarek/springbootcamp2017-kino/commit/ff9da568690ce68ccbf227246029263c057b4069)
 
 Wrzuciłem appkę na HEROKU. Można się bawić. Teraz wy przejmujecie aplikację - rozbudujcie ją.
  
