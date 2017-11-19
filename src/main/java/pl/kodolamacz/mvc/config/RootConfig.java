@@ -1,6 +1,7 @@
 package pl.kodolamacz.mvc.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.ImportResource;
 
 /**
@@ -8,6 +9,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 @Configuration
 @ImportResource("classpath:application.xml")
+@Import(WebSecurityConfig.class)
 public class RootConfig {
 
 }
