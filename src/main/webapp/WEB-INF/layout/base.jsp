@@ -48,6 +48,7 @@
                         <sec:authorize access="isAuthenticated()">
                             <a class="nav-link" href="<c:url value="/logout"/>">Wyloguj</a>
                         </sec:authorize>
+
                 </li>
             </ul>
 
