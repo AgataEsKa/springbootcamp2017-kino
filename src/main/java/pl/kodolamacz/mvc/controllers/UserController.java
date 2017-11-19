@@ -46,7 +46,7 @@ public class UserController {
             return "addNewUser";
         }
         userDao.save(new User(userForm.getEmail(), userForm.getPassword()));
-        return "redirect:/" + BASE_URL;
+        return "redirect:/";
     }
 
     // zapytanie do naszego serwisu: accounts/ajax

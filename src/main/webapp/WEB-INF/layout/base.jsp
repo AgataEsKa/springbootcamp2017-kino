@@ -27,7 +27,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home</a>
+                    <a class="nav-link" href="<c:url value = "/"/>">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="<c:url value = "/accounts"/>">Użytkownicy</a>
@@ -41,15 +41,20 @@
 
             </ul>
             <ul class="navbar-nav ml-auto float-right">
-                <li class="nav-item active">
+                <li class="nav-item active mr-2">
                         <sec:authorize access="isAnonymous()">
-                            <a class="nav-link" href="<c:url value="/login"/>">Logowanie</a>
+                            <a class="btn btn-success" href="<c:url value="/login"/>">Logowanie</a>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
-                            <a class="nav-link" href="<c:url value="/logout"/>">Wyloguj</a>
+                            <a class="btn btn-success" href="<c:url value="/logout"/>">Wyloguj</a>
                         </sec:authorize>
 
                 </li>
+                <sec:authorize access="isAnonymous()">
+                <li class="nav-item active">
+                        <a class="btn btn-primary" href="<c:url value="/accounts/add"/>">Rejestracja</a>
+                </li>
+                </sec:authorize>
             </ul>
 
         </div>
