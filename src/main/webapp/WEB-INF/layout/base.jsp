@@ -1,5 +1,6 @@
 <%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <html>
 <head>
@@ -41,7 +42,12 @@
             </ul>
             <ul class="navbar-nav ml-auto float-right">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Logowanie</a>
+                        <sec:authorize access="isAnonymous()">
+                            <a class="nav-link" href="<c:url value="/login"/>">Logowanie</a>
+                        </sec:authorize>
+                        <sec:authorize access="isAuthenticated()">
+                            <a class="nav-link" href="<c:url value="/logout"/>">Wyloguj</a>
+                        </sec:authorize>
                 </li>
             </ul>
 
