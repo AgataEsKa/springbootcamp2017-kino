@@ -1,6 +1,7 @@
 package pl.kodolamacz.mvc.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -52,7 +53,7 @@ public class UserController {
   }
 
   // zapytanie do naszego serwisu: accounts/ajax
-  @RequestMapping(value = "/ajax", method = GET)
+  @RequestMapping(value = "/ajax", method = GET, produces = MediaType.APPLICATION_JSON_VALUE)
   public @ResponseBody List<User> getUsers() {
       return userDao.findAll();
   }
