@@ -1,5 +1,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
 <%--
   Created by IntelliJ IDEA.
@@ -19,7 +20,7 @@
 <div class="container-fluid">
     <div class="row">
 
-        <h2>Dodaj nowego usera</h2>
+        <h2><spring:message code="user.add" /></h2>
 
         <div class="col-lg-12">
 
@@ -35,7 +36,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Password</td>
+                        <td><spring:message code="password" /></td> <!-- internacjonalizacja pola -->
                         <td>
                             <form:input path="password"/>
                             <form:errors path="password" />

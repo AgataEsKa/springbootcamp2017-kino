@@ -34,7 +34,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     }
 
    // mechanizm internacjonalizacji powiązany z plikami message_pl_PL.properties
-  @Bean("messageSource")
+  @Bean("messageSource") // <-- konkretnie musi mieć taką nazwę. Inaczej nie będzie działać
   public ResourceBundleMessageSource getMessageSource(){
     ResourceBundleMessageSource resourceBundleMessageSource = new ResourceBundleMessageSource();
     resourceBundleMessageSource.setBasename("messages");
