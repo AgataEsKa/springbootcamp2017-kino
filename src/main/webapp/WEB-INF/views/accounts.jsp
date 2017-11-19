@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<table id="accountTable" class="table table-responsive table-bordered">
+<table id="accountTable" class="table table-bordered">
     <thead>
         <tr>
             <th>Id</th>
