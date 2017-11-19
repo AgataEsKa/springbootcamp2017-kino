@@ -31,7 +31,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         User user = userDao.findByEmail(name);
 
-        if(user != null && !user.getPassword().equals(password)) {
+        if(user == null || !user.getPassword().equals(password)) {
             throw new BadCredentialsException("Invalid username or password");
         }
 
