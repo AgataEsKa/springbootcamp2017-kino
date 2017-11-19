@@ -11,6 +11,11 @@
           href="<c:url value="/resources/style.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/bootstrap/css/bootstrap.min.css"/>"/>
     <script src="<c:url value="/resources/bootstrap/js/bootstrap.min.js"/>"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.css"/>
+
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/jq-3.2.1/dt-1.10.16/datatables.min.js"></script>
+
     <tiles:insertAttribute name="css"/>
 </head>
 <body>
