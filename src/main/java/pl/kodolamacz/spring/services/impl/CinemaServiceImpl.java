@@ -3,19 +3,19 @@ package pl.kodolamacz.spring.services.impl;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import pl.kodolamacz.spring.dao.model.*;
 import pl.kodolamacz.spring.dao.repository.*;
 import pl.kodolamacz.spring.services.CinemaService;
 import pl.kodolamacz.spring.services.exceptions.UserNotFoundException;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by acacko on 04.11.17
  */
 @Service
-@Transactional
+//@Transactional
 public class CinemaServiceImpl implements CinemaService {
 
     @Autowired
@@ -65,5 +65,10 @@ public class CinemaServiceImpl implements CinemaService {
     @Override
     public void createMovie(String title, int price) {
         movieDao.save(new Movie(title, price));
+    }
+
+    @Override
+    public List<Reservation> findReservationsByUserId(Long id) {
+        return reservationDao.findByUserId(id);
     }
 }

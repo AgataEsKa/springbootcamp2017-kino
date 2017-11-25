@@ -1,10 +1,12 @@
 package pl.kodolamacz.spring.services;
 
+import pl.kodolamacz.spring.dao.model.Reservation;
 import pl.kodolamacz.spring.dao.model.Show;
 import pl.kodolamacz.spring.dao.model.User;
 import pl.kodolamacz.spring.services.exceptions.UserNotFoundException;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by acacko on 29.10.17
@@ -30,5 +32,8 @@ public interface CinemaService {
 
     // 4. Utworzenie filmu
     void createMovie(String title, int price);
+
+    // na potrzeby Mockito
+    List<Reservation> findReservationsByUserId(Long id);
 
 }
