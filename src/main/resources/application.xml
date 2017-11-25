@@ -15,6 +15,24 @@
     <!--uruchomienie aspektów:-->
     <aop:aspectj-autoproxy/>
 
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+
+        <property name="host" value="poczta.o2.pl"/>
+        <property name="username" value="kodolamacz-sages@o2.pl"/>
+        <property name="password" value="kodolamacz-sages"/>
+        <property name="port" value="465"/>
+
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
+                <prop key="mail.smtp.socketFactory.fallback">false</prop>
+            </props>
+        </property>
+        <!--kodolamacz-2017-->
+
+    </bean>
+
     <!--uruchomienie mechanizmu transakcji-->
     <!--<tx:annotation-driven />-->
 
