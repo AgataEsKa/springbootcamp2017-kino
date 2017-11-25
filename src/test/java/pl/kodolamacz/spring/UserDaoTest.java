@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import pl.kodolamacz.spring.dao.model.Role;
 import pl.kodolamacz.spring.dao.model.User;
+import pl.kodolamacz.spring.dao.repository.RoleDao;
 import pl.kodolamacz.spring.dao.repository.UserDao;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -27,6 +29,9 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
     private UserDao userDao;
 
     private User user;
+
+    @Autowired
+    private RoleDao roleDao;
 
     @Before
     public void init() {
@@ -90,8 +95,19 @@ public class UserDaoTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     }
 
+    @Test
+    public void rolesTest() {
+        Role roleAdmin = roleDao.save(new Role("ROLE_ADMIN"));
 
+        User user = new User("email@pl2", "pass2");
+        user.setRole(roleAdmin);
 
+        userDao.save(user);
+        User byEmail = userDao.findByEmail("email@pl2");
+
+        assertThat(byEmail.getRoles()).contains(roleAdmin);
+
+    }
 
 }
 

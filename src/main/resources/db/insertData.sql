@@ -1,5 +1,6 @@
 INSERT INTO users VALUES (NULL, 'arek@cacko.pl', 'myPassword');
 INSERT INTO users VALUES (NULL, 'person@person.pl', 'pass2');
+INSERT INTO users VALUES (NULL, 'a', 'a');
 
 INSERT INTO movies VALUES (NULL, 'Titanic', 2500);
 INSERT INTO movies VALUES (NULL, 'Matrix', 2000);
@@ -12,3 +13,12 @@ INSERT INTO shows VALUES (NULL, TIMESTAMP '2017-11-04 21:00:00', 2, 2);
 
 INSERT INTO reservations VALUES (NULL, 'WAITING', 1, 1);
 INSERT INTO reservations VALUES (NULL, 'WAITING', 2, 2);
+
+INSERT INTO reservations VALUES (NULL, 'WAITING', 2, 2);
+
+INSERT INTO roles VALUES (NULL, 'ROLE_ADMIN');
+INSERT INTO roles VALUES (NULL, 'ROLE_USER');
+
+INSERT INTO users_roles VALUES ( 3, 1);
+INSERT INTO users_roles VALUES ( 3, 2);
+
