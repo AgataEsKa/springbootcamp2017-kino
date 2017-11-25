@@ -3,13 +3,14 @@ package pl.kodolamacz.mvc.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Description;
 import org.springframework.context.support.ResourceBundleMessageSource;
-import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 
 /**
  * Created by acacko on 05.11.17
@@ -20,16 +21,35 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Bean
-    public ViewResolver viewResolver() {
-        TilesViewResolver resolver = new TilesViewResolver();
-        return resolver;
+    @Description("Thymeleaf Template Resolver")
+    public ServletContextTemplateResolver thymeleafTemplateResolver() {
+        ServletContextTemplateResolver templateResolver = new ServletContextTemplateResolver();
+        templateResolver.setPrefix("/WEB-INF/views/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setTemplateMode("HTML5");
+
+        return templateResolver;
     }
+
     @Bean
-    public TilesConfigurer getTilesConfigurer(){
-        TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions("/WEB-INF/layout/tiles.xml");
-        tilesConfigurer.setCheckRefresh(true); // refreshing
-        return tilesConfigurer;
+    @Description("Thymeleaf Template Engine")
+    public SpringTemplateEngine thymeleafTemplateEngine() {
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(thymeleafTemplateResolver());
+        templateEngine.setTemplateEngineMessageSource(getMessageSource());
+        return templateEngine;
+    }
+
+    @Bean
+    @Description("Thymeleaf View Resolver")
+    public ThymeleafViewResolver thymeleafViewResolver() {
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(thymeleafTemplateEngine());
+//        viewResolver.setViewNames(new String[]{"thymeleaf/*"});
+        viewResolver.setCharacterEncoding("UTF-8");
+        viewResolver.setOrder(1);
+        return viewResolver;
     }
 
 

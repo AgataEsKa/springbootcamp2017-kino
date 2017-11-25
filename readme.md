@@ -1,3 +1,18 @@
+A co do Thymeleaf
+===
+Proszę Państwa: lecicie z koksem z tej strony:
+http://itutorial.thymeleaf.org/
+
+tutorial prowadzi za rączkę (małpa by się nayczyła - o ile znajdzie czas na przeczytanie choćby tekstu)
+
+Także - krzyżyk na drogę!
+
+Jedyną stroną która się Wam teraz otworzy jest:
+http://localhost:8080/kino/reservations
+inne proszę dorobić w ramach treningu.
+
+Jakby co - nie zapomnijcie że zrobiłem piękne slajdy!
+
 Deploy na HEROKU
 ===
 Jest kilka "darmowych" serwisów do deployowania aplikacji webowych JAVA

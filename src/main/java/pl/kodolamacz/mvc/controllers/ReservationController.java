@@ -24,8 +24,9 @@ public class ReservationController {
   private UserDao userDao;
 
   @RequestMapping(method = RequestMethod.GET)
-  public void get(Model model) {
-    System.out.println("TUTAJ PRACA DOMOWA");
+  public String get(Model model) {
+      model.addAttribute("reservations", reservationDao.findAll());
+      return "reservations";
   }
 
   // przykład adresu: http://localhost:8080/kino/reservations/byUser?userId=1

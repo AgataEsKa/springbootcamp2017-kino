@@ -1,0 +1,44 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Thymeleaf Examples</title>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+    <meta charset="UTF-8" />
+</head>
+<body>
+
+<h1 th:text="#{reservations.welcome}">Tutaj będzie napis tytułowy</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>status</th>
+            <th>user name</th>
+            <th>movie title</th>
+            <th>room number</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="reservation : ${reservations}">
+            <td th:text="${reservation.id}">
+               Tutaj będzie id
+            </td>
+            <td th:text="${reservation.status}">
+                Tutaj będzie status
+            </td>
+            <td th:text="${reservation.user.email}">
+                Tutaj będzie email
+            </td>
+            <td th:text="${reservation.show.movie.title}">
+                Tutaj będzie title
+            </td>
+            <td th:text="${reservation.show.room.number}">
+                Tutaj będzie number
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+</body>
+</html>
