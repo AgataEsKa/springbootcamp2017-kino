@@ -14,6 +14,7 @@ import java.util.Set;
             query = "select a from User a where a.email = :email"
     )
 })
+//@XmlRootElement(name = "user")
 public class User extends AbstractEntity {
 
     private String email;

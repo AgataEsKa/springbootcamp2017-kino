@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.kodolamacz.mvc.controllers.forms.AddUserForm;
 import pl.kodolamacz.spring.dao.model.User;
+import pl.kodolamacz.spring.dao.model.helpers.Users;
 import pl.kodolamacz.spring.dao.repository.UserDao;
 
 import javax.validation.Valid;
@@ -56,10 +57,25 @@ public class UserController {
         return userDao.findAll();
     }
 
+    // 1. niedziałający XML
     @RequestMapping(value = "/ajax2", method = GET, produces = MediaType.APPLICATION_XML_VALUE)
     public @ResponseBody
     List<User> getUsers2() {
         return userDao.findAll();
+    }
+
+    // 1. niedziałający XML
+    @RequestMapping(value = "/ajax3", method = GET, produces = MediaType.APPLICATION_XML_VALUE)
+    public @ResponseBody
+    User getUser() {
+        return userDao.findOne(1L);
+    }
+
+    // 2. niedziałający XML - naprawiamy -> http://localhost:8080/kino/accounts/ajax4
+    @RequestMapping(value = "/ajax4", method = GET, produces = MediaType.APPLICATION_XML_VALUE)
+    public @ResponseBody
+    Users getUsers3() {
+        return new Users(userDao.findAll());
     }
 
     /**
