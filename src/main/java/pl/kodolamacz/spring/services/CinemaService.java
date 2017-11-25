@@ -9,7 +9,7 @@ import java.util.Date;
 /**
  * Created by acacko on 29.10.17
  */
-public interface CinemaSerice {
+public interface CinemaService {
 
     // Zadanko na ten tydzień -> doimplementować
     // funkcjonalności biznesowe

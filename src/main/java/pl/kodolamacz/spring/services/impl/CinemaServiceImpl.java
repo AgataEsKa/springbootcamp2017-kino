@@ -1,11 +1,12 @@
 package pl.kodolamacz.spring.services.impl;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.kodolamacz.spring.dao.model.*;
 import pl.kodolamacz.spring.dao.repository.*;
-import pl.kodolamacz.spring.services.CinemaSerice;
+import pl.kodolamacz.spring.services.CinemaService;
 import pl.kodolamacz.spring.services.exceptions.UserNotFoundException;
 
 import java.util.Date;
@@ -15,7 +16,7 @@ import java.util.Date;
  */
 @Service
 @Transactional
-public class CinemaServiceImpl implements CinemaSerice {
+public class CinemaServiceImpl implements CinemaService {
 
     @Autowired
     private UserDao userDao;
@@ -45,7 +46,7 @@ public class CinemaServiceImpl implements CinemaSerice {
         if(user == null)
             throw new UserNotFoundException("user not found with email: "+ email);
 
-        return user.getPassword().equals(password);
+        return user.getPassword().equals(DigestUtils.md5Hex(password));
     }
 
 
