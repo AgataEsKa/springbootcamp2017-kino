@@ -1,5 +1,6 @@
 package pl.kodolamacz.mvc.controllers;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -46,7 +47,7 @@ public class UserController {
         if (bindingResult.hasErrors()) {
             return "addNewUser";
         }
-        userDao.save(new User(userForm.getEmail(), userForm.getPassword()));
+        userDao.save(new User(userForm.getEmail(), DigestUtils.md5Hex(userForm.getPassword())));
         return "redirect:/";
     }
 

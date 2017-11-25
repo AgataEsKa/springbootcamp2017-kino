@@ -1,5 +1,6 @@
 package pl.kodolamacz.mvc.config;
 
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -31,7 +32,7 @@ public class CustomAuthenticationProvider implements AuthenticationProvider {
 
         User user = userDao.findByEmail(name);
 
-        if(user == null || !user.getPassword().equals(password)) {
+        if(user == null || !user.getPassword().equals(DigestUtils.md5Hex(password))) {
             throw new BadCredentialsException("Invalid username or password");
         }
 

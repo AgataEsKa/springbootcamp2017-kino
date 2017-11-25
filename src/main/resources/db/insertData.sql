@@ -1,6 +1,6 @@
-INSERT INTO users VALUES (NULL, 'arek@cacko.pl', 'myPassword');
-INSERT INTO users VALUES (NULL, 'person@person.pl', 'pass2');
-INSERT INTO users VALUES (NULL, 'a', 'a');
+INSERT INTO users VALUES (NULL, 'arek@cacko.pl', 'deb1536f480475f7d593219aa1afd74c');
+INSERT INTO users VALUES (NULL, 'person@person.pl', 'c1572d05424d0ecb2a65ec6a82aeacbf');
+INSERT INTO users VALUES (NULL, 'a', '0cc175b9c0f1b6a831c399e269772661');
 
 INSERT INTO movies VALUES (NULL, 'Titanic', 2500);
 INSERT INTO movies VALUES (NULL, 'Matrix', 2000);
